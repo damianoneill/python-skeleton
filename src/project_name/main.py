@@ -1,33 +1,24 @@
 """Main module for the project_name package."""
 
+import uvicorn
 
-def hello_world(name: str | None = None, greeting_format: str | None = None) -> str:
-    """Return a greeting message.
+from project_name.infrastructure.api.app import create_app
+from project_name.infrastructure.config.settings import settings
 
-    Args:
-        name: Optional name to personalize the greeting
-        greeting_format: Optional custom format for the greeting (must include '{}' placeholder)
-
-    Returns:
-        A greeting message
-    """
-    if greeting_format is None:
-        greeting_format = "Hello, {}! Welcome to the project."
-
-    recipient = name if name else "World"
-    return greeting_format.format(recipient)
+# FastAPI application instance
+app = create_app()
 
 
-def run(name: str | None = None) -> str:
-    """Run the main program logic.
+def run(host: str = settings.host, port: int = settings.port) -> None:
+    """Run the FastAPI application.
 
     Args:
-        name: Optional name to personalize the greeting
-
-    Returns:
-        The greeting message
+        host: Host address to bind the server to.
+             Default is localhost (127.0.0.1) for security.
+             Set environment variable API_HOST="0.0.0.0" to bind to all interfaces.
+        port: Port to bind the server to
     """
-    return hello_world(name)
+    uvicorn.run(app, host=host, port=port, reload=settings.debug)
 
 
 def main() -> int:
@@ -36,8 +27,7 @@ def main() -> int:
     Returns:
         Exit code
     """
-    message = run()
-    print(message)
+    run()
     return 0
 
 

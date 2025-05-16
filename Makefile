@@ -77,7 +77,7 @@ pre-commit-install: ## Install pre-commit hooks
 pre-commit-update: ## Update pre-commit hooks
 	uvx pre-commit autoupdate
 
-check: clean lint format pre-commit test ## Run all checks and tests
+check: clean format lint pre-commit test ## Run all checks and tests
 
 # Default target
-all: clean lint test
+all: clean format lint test

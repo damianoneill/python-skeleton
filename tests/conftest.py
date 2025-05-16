@@ -2,25 +2,17 @@
 
 import os
 import sys
-from collections.abc import Callable
 
 import pytest
+from fastapi.testclient import TestClient
 
 # Add the src directory to the Python path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../src")))
 
-
-@pytest.fixture
-def greeting_format() -> str:
-    """Provide a custom greeting format for testing."""
-    return "Greetings, {}! Welcome to the project."
+from project_name.main import app
 
 
 @pytest.fixture
-def custom_greeter(greeting_format: str) -> Callable[[str], str]:
-    """Provide a function that creates custom greetings."""
-
-    def _greeter(name: str) -> str:
-        return greeting_format.format(name)
-
-    return _greeter
+def client() -> TestClient:
+    """Provide a FastAPI test client."""
+    return TestClient(app)
