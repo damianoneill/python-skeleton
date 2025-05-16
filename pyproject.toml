@@ -78,3 +78,4 @@ omit = ["tests/*"]
 
 [tool.bandit]
 targets = ["src"]
+exclude_dirs = ["tests"]

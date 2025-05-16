@@ -8,7 +8,7 @@ from project_name.main import hello_world, run
 
 
 @pytest.mark.unit
-def test_hello_world_without_name():
+def test_hello_world_without_name() -> None:
     """Test that hello_world returns the default greeting when no name is provided."""
     result = hello_world()
     assert result == "Hello, World! Welcome to the project."
@@ -16,7 +16,7 @@ def test_hello_world_without_name():
 
 
 @pytest.mark.unit
-def test_hello_world_with_name():
+def test_hello_world_with_name() -> None:
     """Test that hello_world returns a personalized greeting when a name is provided."""
     name = "Alice"
     result = hello_world(name)
@@ -25,14 +25,14 @@ def test_hello_world_with_name():
 
 
 @pytest.mark.unit
-def test_run():
+def test_run() -> None:
     """Test that the run function returns the expected greeting message."""
     result = run()
     assert result == "Hello, World! Welcome to the project."
 
 
 @pytest.mark.unit
-def test_hello_world_with_custom_format(greeting_format: str):
+def test_hello_world_with_custom_format(greeting_format: str) -> None:
     """Test that hello_world works with a custom greeting format."""
     name = "Bob"
     result = hello_world(name, greeting_format)
@@ -42,7 +42,7 @@ def test_hello_world_with_custom_format(greeting_format: str):
 
 
 @pytest.mark.unit
-def test_with_custom_greeter(custom_greeter: Callable[[str], str]):
+def test_with_custom_greeter(custom_greeter: Callable[[str], str]) -> None:
     """Test using the custom greeter fixture."""
     name = "Charlie"
     result = custom_greeter(name)
