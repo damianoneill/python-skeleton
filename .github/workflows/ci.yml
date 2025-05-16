@@ -27,7 +27,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        uv pip install -e ".[dev]"
+        uv venv && uv pip install -e . --group dev
 
     - name: Lint
       run: |
