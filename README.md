@@ -88,6 +88,56 @@ For a REST API that processes requests and interacts with external systems:
 
 You can find more details about this architecture in the [Architecture Document](docs/ARCHITECTURE.md).
 
+## Getting Started
+
+### Project Renaming
+
+This template uses "project_name" as a placeholder. Before you start development, you should rename it to match your actual project name:
+
+1. **Clone the repository**
+
+```bash
+git clone https://github.com/yourusername/python-skeleton.git my-project
+cd my-project
+```
+
+2. **Make the rename script executable**
+
+```bash
+chmod +x scripts/rename_project.sh
+```
+
+3. **Run the rename script with your desired project name**
+
+```bash
+./scripts/rename_project.sh your_project_name
+```
+
+> **Note:** The project name should be a valid Python package name: start with a letter and contain only letters, numbers, and underscores.
+
+4. **Review and commit the changes**
+
+```bash
+git status
+git commit -m "Rename project from project_name to your_project_name"
+```
+
+5. **Update remote repository (if needed)**
+
+```bash
+git remote set-url origin https://github.com/yourusername/your-project.git
+git push -u origin main
+```
+
+The rename script automatically:
+
+- Renames the main package directory
+- Updates imports and references across all files
+- Preserves Git history for most files
+- Adds appropriate docstrings to `__init__.py` files
+
+After renaming, you're ready to start development with your custom project name!
+
 ## Development
 
 ### Prerequisites
@@ -98,10 +148,6 @@ You can find more details about this architecture in the [Architecture Document]
 ### Setup
 
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/project_name.git
-cd project_name
-
 # Install dependencies
 make install-dev
 ```
