@@ -33,6 +33,10 @@ src/
 
 This project follows Clean Architecture principles, organising code into four concentric layers with dependencies pointing inward.
 
+<p align="center">
+  <img src="./images/concentric.png" width="50%"/>
+</p>
+
 ### Layer Structure
 
 1. **[Domain Layer](./src/project_name/domain/README.md)** (Innermost)

@@ -16,14 +16,10 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
 ]
-dependencies = [
-    "fastapi>=0.115.12",
-    "pydantic>=2.6.0",
-    "uvicorn>=0.34.2",
-]
+dependencies = ["fastapi>=0.115.12", "pydantic>=2.6.0", "uvicorn>=0.34.2"]
 
 [project.scripts]
-python-skeleton = "project_name.main:main"
+project_name = "project_name.main:main"
 
 [dependency-groups]
 dev = [
