@@ -7,7 +7,8 @@ from fastapi.testclient import TestClient
 
 
 @pytest.mark.unit
-def test_get_greeting_without_params(client: TestClient) -> None:
+@pytest.mark.asyncio
+async def test_get_greeting_without_params(client: TestClient) -> None:
     """Test the greeting endpoint with default parameters."""
     response = client.get("/api/greetings/World")
     assert response.status_code == 200
@@ -18,7 +19,8 @@ def test_get_greeting_without_params(client: TestClient) -> None:
 
 
 @pytest.mark.unit
-def test_get_greeting_with_name(client: TestClient) -> None:
+@pytest.mark.asyncio
+async def test_get_greeting_with_name(client: TestClient) -> None:
     """Test the greeting endpoint with a custom name."""
     name = "Alice"
     response = client.get(f"/api/greetings/{name}")
@@ -30,7 +32,8 @@ def test_get_greeting_with_name(client: TestClient) -> None:
 
 
 @pytest.mark.unit
-def test_get_greeting_with_custom_message(client: TestClient) -> None:
+@pytest.mark.asyncio
+async def test_get_greeting_with_custom_message(client: TestClient) -> None:
     """Test the greeting endpoint with a custom message."""
     name = "Bob"
     message = "Greetings"
@@ -43,7 +46,8 @@ def test_get_greeting_with_custom_message(client: TestClient) -> None:
 
 
 @pytest.mark.unit
-def test_get_greeting_with_timestamp(client: TestClient) -> None:
+@pytest.mark.asyncio
+async def test_get_greeting_with_timestamp(client: TestClient) -> None:
     """Test the greeting endpoint with timestamp included."""
     name = "Charlie"
     response = client.get(f"/api/greetings/{name}?include_timestamp=true")
@@ -56,7 +60,8 @@ def test_get_greeting_with_timestamp(client: TestClient) -> None:
 
 
 @pytest.mark.unit
-def test_get_latest_greetings(client: TestClient) -> None:
+@pytest.mark.asyncio
+async def test_get_latest_greetings(client: TestClient) -> None:
     """Test the latest greetings endpoint."""
     # First create some greetings
     client.get("/api/greetings/Alice")
@@ -78,7 +83,8 @@ def test_get_latest_greetings(client: TestClient) -> None:
 
 
 @pytest.mark.unit
-def test_get_latest_greetings_with_limit(client: TestClient) -> None:
+@pytest.mark.asyncio
+async def test_get_latest_greetings_with_limit(client: TestClient) -> None:
     """Test the latest greetings endpoint with a custom limit."""
     # First create some greetings
     client.get("/api/greetings/David")

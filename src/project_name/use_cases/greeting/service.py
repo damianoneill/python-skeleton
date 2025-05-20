@@ -12,7 +12,7 @@ class GreetingService:
     def __init__(self, greeting_repository: GreetingRepository):
         self.greeting_repository = greeting_repository
 
-    def create_greeting(self, request: GreetingRequest) -> GreetingResponse:
+    async def create_greeting(self, request: GreetingRequest) -> GreetingResponse:
         """Create a new greeting."""
         # Domain validation
         if not request.recipient:
@@ -25,7 +25,7 @@ class GreetingService:
         greeting = Greeting(message=request.message, recipient=request.recipient)
 
         # Save to repository
-        self.greeting_repository.save(greeting)
+        await self.greeting_repository.save(greeting)
 
         # Transform to response DTO
         formatted_message = (
@@ -38,9 +38,9 @@ class GreetingService:
             timestamp=greeting.timestamp if request.include_timestamp else None,
         )
 
-    def get_latest_greetings(self, limit: int = 5) -> list[GreetingResponse]:
+    async def get_latest_greetings(self, limit: int = 5) -> list[GreetingResponse]:
         """Get the latest greetings."""
-        greetings = self.greeting_repository.get_latest(limit)
+        greetings = await self.greeting_repository.get_latest(limit)
 
         return [
             GreetingResponse(greeting=g.format_greeting(), recipient=g.recipient, timestamp=g.timestamp)

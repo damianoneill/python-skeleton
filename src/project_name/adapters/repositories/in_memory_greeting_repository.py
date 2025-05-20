@@ -9,7 +9,7 @@ class InMemoryGreetingRepository:
         self.greetings: dict[str, list[Greeting]] = {}
         self.all_greetings: list[Greeting] = []
 
-    def save(self, greeting: Greeting) -> None:
+    async def save(self, greeting: Greeting) -> None:
         """Save a greeting to the repository."""
         if greeting.recipient not in self.greetings:
             self.greetings[greeting.recipient] = []
@@ -17,10 +17,10 @@ class InMemoryGreetingRepository:
         self.greetings[greeting.recipient].append(greeting)
         self.all_greetings.append(greeting)
 
-    def find_by_recipient(self, recipient: str) -> list[Greeting]:
+    async def find_by_recipient(self, recipient: str) -> list[Greeting]:
         """Find greetings by recipient name."""
         return self.greetings.get(recipient, [])
 
-    def get_latest(self, limit: int = 5) -> list[Greeting]:
+    async def get_latest(self, limit: int = 5) -> list[Greeting]:
         """Get the latest greetings."""
         return sorted(self.all_greetings, key=lambda g: g.timestamp, reverse=True)[:limit]

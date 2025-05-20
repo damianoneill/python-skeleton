@@ -43,7 +43,7 @@ def create_app() -> FastAPI:
         include_timestamp: bool = Query(False, description="Include timestamp in response"),
     ) -> GreetingResponse:
         """Generate a greeting for the specified recipient."""
-        return controller.create_greeting(recipient, message, include_timestamp)
+        return await controller.create_greeting(recipient, message, include_timestamp)
 
     @app.get(
         "/api/greetings",
@@ -56,6 +56,6 @@ def create_app() -> FastAPI:
         limit: int = Query(5, description="Number of greetings to return", ge=1, le=100),
     ) -> list[GreetingResponse]:
         """Get the latest greetings."""
-        return controller.get_latest_greetings(limit)
+        return await controller.get_latest_greetings(limit)
 
     return app
