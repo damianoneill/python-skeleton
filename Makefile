@@ -1,4 +1,4 @@
-.PHONY: help install install-dev clean lint format test test-cov test-unit test-integration build run sync lock pre-commit pre-commit-install pre-commit-update check
+.PHONY: help install install-dev clean lint format test test-cov test-unit test-integration build run sync lock pre-commit pre-commit-install pre-commit-update check autotyping
 
 # Use bash as shell
 SHELL := /bin/bash
@@ -76,6 +76,9 @@ pre-commit-install: ## Install pre-commit hooks
 
 pre-commit-update: ## Update pre-commit hooks
 	uvx pre-commit autoupdate
+
+autotyping: ## Run autotyping with aggressive parameter
+	uv run autotyping --aggressive src tests
 
 check: clean format lint pre-commit test ## Run all checks and tests
 
