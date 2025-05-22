@@ -25,6 +25,7 @@ project_name = "project_name.main:main"
 dev = [
     "httpx>=0.28.1",
     "pyclean>=3.1.0",
+    "pylic>=5.0.1",
     "pytest>=8.3.5",
     "pytest-asyncio>=0.26.0",
     "pytest-cov>=6.1.1",
@@ -83,3 +84,15 @@ omit = ["tests/*"]
 [tool.bandit]
 targets = ["src"]
 exclude_dirs = ["tests"]
+
+[tool.pylic]
+safe_licenses = [
+    "Apache-2.0",
+    "MIT License",
+    "MIT",
+    "PSF-2.0",
+    "BSD License",
+    "BSD-2-Clause",
+    "ISC License (ISCL)",
+]
+# https://github.com/ubersan/pylic?tab=readme-ov-file#usage-example

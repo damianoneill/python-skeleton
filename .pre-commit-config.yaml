@@ -36,3 +36,8 @@ repos:
       - id: bandit
         args: ["-c", "pyproject.toml"]
         additional_dependencies: ["bandit[toml]"]
+
+  - repo: https://github.com/ubersan/pylic
+    rev: v5.0.1
+    hooks:
+      - id: pylic
