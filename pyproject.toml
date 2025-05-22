@@ -23,6 +23,7 @@ project_name = "project_name.main:main"
 
 [dependency-groups]
 dev = [
+    "autotyping>=24.9.0",
     "httpx>=0.28.1",
     "pyclean>=3.1.0",
     "pylic>=5.0.1",
@@ -60,6 +61,10 @@ select = [
     "C4",  # flake8-comprehensions
     "SIM", # flake8-simplify
     "TID", # flake8-tidy-imports
+    "FA",  # flake8-future-annotations
+    "T20", # flake8-print (removes print statements)
+    "RET", # flake8-return
+    "ARG", # flake8-unused-arguments
 ]
 ignore = [
     "E203", # whitespace before ':' (conflicts with black)
@@ -67,6 +72,10 @@ ignore = [
 
 [tool.ruff.lint.isort]
 known-first-party = ["project_name"]
+
+[tool.ruff.lint.flake8-type-checking]
+strict = true
+
 
 [tool.mypy]
 python_version = "3.11"

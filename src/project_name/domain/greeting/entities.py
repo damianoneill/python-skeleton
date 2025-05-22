@@ -5,7 +5,7 @@ from datetime import datetime
 class Greeting:
     """Domain entity representing a greeting message."""
 
-    def __init__(self, message: str, recipient: str, timestamp: datetime | None = None):
+    def __init__(self, message: str, recipient: str, timestamp: datetime | None = None) -> None:
         self.message = message
         self.recipient = recipient
         self.timestamp = timestamp or datetime.now()

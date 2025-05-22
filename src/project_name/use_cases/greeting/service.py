@@ -9,7 +9,7 @@ from project_name.use_cases.greeting.dtos import GreetingRequest, GreetingRespon
 class GreetingService:
     """Service implementing greeting-related use cases."""
 
-    def __init__(self, greeting_repository: GreetingRepository):
+    def __init__(self, greeting_repository: GreetingRepository) -> None:
         self.greeting_repository = greeting_repository
 
     async def create_greeting(self, request: GreetingRequest) -> GreetingResponse:

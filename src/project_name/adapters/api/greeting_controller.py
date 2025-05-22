@@ -10,7 +10,7 @@ from project_name.use_cases.greeting.service import GreetingService
 class GreetingController:
     """Controller handling greeting-related endpoints."""
 
-    def __init__(self, greeting_service: GreetingService):
+    def __init__(self, greeting_service: GreetingService) -> None:
         self.greeting_service = greeting_service
 
     async def create_greeting(
