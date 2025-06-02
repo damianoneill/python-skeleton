@@ -14,6 +14,7 @@ if [ $# -ne 1 ]; then
     echo "=================================================="
     echo "Usage: $0 new_project_name"
     echo "Example: $0 my_awesome_app"
+    echo "Example: $0 my-awesome-app"
     echo "=================================================="
     exit 1
 fi
@@ -28,10 +29,18 @@ if [ ! -d "src/$OLD_NAME" ] && [ -d "src/$NEW_NAME" ]; then
     exit 0
 fi
 
-# Validate that the new name is a valid Python package name
-if ! [[ $NEW_NAME =~ ^[a-zA-Z][a-zA-Z0-9_]*$ ]]; then
-    echo "Error: The project name must be a valid Python package name."
-    echo "It should start with a letter and contain only letters, numbers, and underscores."
+# Validate that the new name is a valid Python package/module name
+# Allow letters, numbers, underscores, and hyphens, but must start with a letter
+if ! [[ $NEW_NAME =~ ^[a-zA-Z][a-zA-Z0-9_-]*$ ]]; then
+    echo "Error: The project name must be a valid Python package/module name."
+    echo "It should start with a letter and contain only letters, numbers, underscores, and hyphens."
+    exit 1
+fi
+
+# Additional validation: cannot end with hyphen or underscore, and cannot have consecutive separators
+if [[ $NEW_NAME =~ [-_]$ ]] || [[ $NEW_NAME =~ [-_][-_] ]]; then
+    echo "Error: The project name cannot end with a hyphen or underscore,"
+    echo "and cannot contain consecutive hyphens or underscores."
     exit 1
 fi
 
